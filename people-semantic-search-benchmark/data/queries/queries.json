@@ -1,0 +1,813 @@
+{
+ "queries": [
+  {
+   "id": "q1",
+   "text": "Senior level senior staff engineers in Dallas-Fort Worth area",
+   "metadata": {
+    "role": "Senior Staff Engineer",
+    "location": "Dallas-Fort Worth"
+   }
+  },
+  {
+   "id": "q2",
+   "text": "HR business partner in Abu Dhabi for a crypto exchange",
+   "metadata": {
+    "role": "HR business partner",
+    "location": "Abu Dhabi",
+    "industry": "crypto exchange"
+   }
+  },
+  {
+   "id": "q3",
+   "text": "Machine learning systems and LLM inference researcher",
+   "metadata": {
+    "role": "machine learning systems / LLM inference researcher"
+   }
+  },
+  {
+   "id": "q4",
+   "text": "Gaming product owner at companies in Portugal",
+   "metadata": {
+    "role": "Product Owner",
+    "location": "Portugal"
+   }
+  },
+  {
+   "id": "q5",
+   "text": "Compensation managers in Romania",
+   "metadata": {
+    "role": "compensation manager",
+    "location": "Romania"
+   }
+  },
+  {
+   "id": "q6",
+   "text": "Senior staff engineers in the Dallas-Fort Worth area",
+   "metadata": {
+    "role": "senior staff engineer",
+    "location": "Dallas-Fort Worth"
+   }
+  },
+  {
+   "id": "q7",
+   "text": "Growth marketers at consumer subscription apps who previously worked at a FAANG company",
+   "metadata": {
+    "role": "growth marketer",
+    "industry": "consumer subscription app",
+    "history": "previously at a FAANG company"
+   }
+  },
+  {
+   "id": "q8",
+   "text": "Head of privacy in Italy at crypto",
+   "metadata": {
+    "role": "Head of Privacy",
+    "location": "Italy"
+   }
+  },
+  {
+   "id": "q9",
+   "text": "UI designer based in Mexico at fintech",
+   "metadata": {
+    "role": "UI Designer",
+    "location": "Mexico"
+   }
+  },
+  {
+   "id": "q10",
+   "text": "Robotics engineer jobs Pennsylvania Web3",
+   "metadata": {
+    "role": "Robotics Engineer",
+    "location": "Pennsylvania"
+   }
+  },
+  {
+   "id": "q11",
+   "text": "Backend engineers with Go and distributed-systems experience at infrastructure startups",
+   "metadata": {
+    "role": "backend engineer",
+    "skill": "Go and distributed systems",
+    "industry": "infrastructure startup"
+   }
+  },
+  {
+   "id": "q12",
+   "text": "Backend engineers with Go and distributed-systems experience",
+   "metadata": {
+    "role": "backend engineer",
+    "skill": "Go and distributed systems"
+   }
+  },
+  {
+   "id": "q13",
+   "text": "Site reliability engineers with Kubernetes experience at fintech companies",
+   "metadata": {
+    "role": "site reliability engineer",
+    "skill": "Kubernetes",
+    "industry": "fintech"
+   }
+  },
+  {
+   "id": "q14",
+   "text": "Embedded systems engineers at drone companies in India",
+   "metadata": {
+    "role": "embedded systems engineer",
+    "industry": "drone company",
+    "location": "India"
+   }
+  },
+  {
+   "id": "q15",
+   "text": "Researchers working on retrieval-augmented generation",
+   "metadata": {
+    "role": "researcher",
+    "topic": "retrieval-augmented generation"
+   }
+  },
+  {
+   "id": "q16",
+   "text": "Researchers working on reinforcement learning",
+   "metadata": {
+    "role": "researcher",
+    "topic": "reinforcement learning"
+   }
+  },
+  {
+   "id": "q17",
+   "text": "Director of enterprise sales at companies in Lisbon",
+   "metadata": {
+    "role": "Director of Enterprise Sales",
+    "location": "Lisbon"
+   }
+  },
+  {
+   "id": "q18",
+   "text": "Quant researchers at crypto market-making firms in Singapore",
+   "metadata": {
+    "role": "quantitative researcher",
+    "industry": "crypto market maker",
+    "location": "Singapore"
+   }
+  },
+  {
+   "id": "q19",
+   "text": "Software developers in Shenzhen with startup experience",
+   "metadata": {
+    "role": "software developer",
+    "location": "Shenzhen",
+    "history": "startup experience"
+   }
+  },
+  {
+   "id": "q20",
+   "text": "Mobile engineers in the United States",
+   "metadata": {
+    "role": "mobile engineer",
+    "location": "United States"
+   }
+  },
+  {
+   "id": "q21",
+   "text": "Compensation Manager located in Romania at startup",
+   "metadata": {
+    "role": "Compensation Manager",
+    "location": "Romania"
+   }
+  },
+  {
+   "id": "q22",
+   "text": "Bioinformatics scientists at Series A biotech startups in the United Kingdom",
+   "metadata": {
+    "role": "bioinformatics scientist",
+    "stage": "Series A",
+    "industry": "biotech",
+    "location": "United Kingdom"
+   }
+  },
+  {
+   "id": "q23",
+   "text": "Bangladesh applied scientists",
+   "metadata": {
+    "role": "Applied Scientist",
+    "location": "Bangladesh"
+   }
+  },
+  {
+   "id": "q24",
+   "text": "Researchers working on speech recognition",
+   "metadata": {
+    "role": "researcher",
+    "topic": "speech recognition"
+   }
+  },
+  {
+   "id": "q25",
+   "text": "Copenhagen Director of Implementation",
+   "metadata": {
+    "role": "Director of Implementation",
+    "location": "Copenhagen"
+   }
+  },
+  {
+   "id": "q26",
+   "text": "iOS engineers with Swift and ARKit experience",
+   "metadata": {
+    "role": "iOS engineer",
+    "skill": "Swift and ARKit"
+   }
+  },
+  {
+   "id": "q27",
+   "text": "Growth marketers",
+   "metadata": {
+    "role": "growth marketer"
+   }
+  },
+  {
+   "id": "q28",
+   "text": "People who build real-time data pipelines at scale",
+   "metadata": {
+    "role": "data / data-infrastructure engineer"
+   }
+  },
+  {
+   "id": "q29",
+   "text": "GPU kernel and CUDA performance engineers",
+   "metadata": {
+    "role": "GPU kernel / CUDA performance engineer"
+   }
+  },
+  {
+   "id": "q30",
+   "text": "Heads of recruiting in Utah",
+   "metadata": {
+    "role": "head of recruiting",
+    "location": "Utah"
+   }
+  },
+  {
+   "id": "q31",
+   "text": "Heads of People in Charlotte",
+   "metadata": {
+    "role": "head of people",
+    "location": "Charlotte"
+   }
+  },
+  {
+   "id": "q32",
+   "text": "Robotics engineers in Pennsylvania",
+   "metadata": {
+    "role": "robotics engineer",
+    "location": "Pennsylvania"
+   }
+  },
+  {
+   "id": "q33",
+   "text": "Quantitative analysts based in MA",
+   "metadata": {
+    "role": "Quantitative Analyst",
+    "location": "MA"
+   }
+  },
+  {
+   "id": "q34",
+   "text": "Policy managers working in Beijing",
+   "metadata": {
+    "role": "Policy Manager",
+    "location": "Beijing"
+   }
+  },
+  {
+   "id": "q35",
+   "text": "Heads of Talent Acquisition at Series A startups in the United States",
+   "metadata": {
+    "role": "Head of Talent Acquisition",
+    "stage": "Series A",
+    "location": "United States"
+   }
+  },
+  {
+   "id": "q36",
+   "text": "Sales team leads in Norway",
+   "metadata": {
+    "role": "sales team lead",
+    "location": "Norway"
+   }
+  },
+  {
+   "id": "q37",
+   "text": "Raleigh technical leads",
+   "metadata": {
+    "role": "Technical Lead",
+    "location": "Raleigh"
+   }
+  },
+  {
+   "id": "q38",
+   "text": "Distinguished engineers across New England with Ruby",
+   "metadata": {
+    "role": "Distinguished Engineer",
+    "location": "New England"
+   }
+  },
+  {
+   "id": "q39",
+   "text": "Robotics perception engineers at warehouse-automation startups in Germany",
+   "metadata": {
+    "role": "robotics perception engineer",
+    "industry": "warehouse automation",
+    "location": "Germany"
+   }
+  },
+  {
+   "id": "q40",
+   "text": "Heads of Talent Acquisition in the United States",
+   "metadata": {
+    "role": "Head of Talent Acquisition",
+    "location": "United States"
+   }
+  },
+  {
+   "id": "q41",
+   "text": "Product managers in Boston",
+   "metadata": {
+    "role": "product manager",
+    "location": "Boston"
+   }
+  },
+  {
+   "id": "q42",
+   "text": "Chief Information Security Officers in the United States",
+   "metadata": {
+    "role": "Chief Information Security Officer",
+    "location": "United States"
+   }
+  },
+  {
+   "id": "q43",
+   "text": "Machine learning engineers with computer-vision experience",
+   "metadata": {
+    "role": "machine learning engineer",
+    "skill": "computer vision"
+   }
+  },
+  {
+   "id": "q44",
+   "text": "Site reliability engineers with Kubernetes experience",
+   "metadata": {
+    "role": "site reliability engineer",
+    "skill": "Kubernetes"
+   }
+  },
+  {
+   "id": "q45",
+   "text": "Developer advocates",
+   "metadata": {
+    "role": "developer advocate"
+   }
+  },
+  {
+   "id": "q46",
+   "text": "Sales leaders",
+   "metadata": {
+    "role": "sales leader"
+   }
+  },
+  {
+   "id": "q47",
+   "text": "Founders in Europe",
+   "metadata": {
+    "role": "founder",
+    "location": "Europe"
+   }
+  },
+  {
+   "id": "q48",
+   "text": "Robotics perception engineers in Germany",
+   "metadata": {
+    "role": "robotics perception engineer",
+    "location": "Germany"
+   }
+  },
+  {
+   "id": "q49",
+   "text": "Quant researchers in Singapore",
+   "metadata": {
+    "role": "quantitative researcher",
+    "location": "Singapore"
+   }
+  },
+  {
+   "id": "q50",
+   "text": "Bioinformatics scientists in the United Kingdom",
+   "metadata": {
+    "role": "bioinformatics scientist",
+    "location": "United Kingdom"
+   }
+  },
+  {
+   "id": "q51",
+   "text": "Embedded systems engineers in India",
+   "metadata": {
+    "role": "embedded systems engineer",
+    "location": "India"
+   }
+  },
+  {
+   "id": "q52",
+   "text": "DevOps engineers in the Netherlands with Azure and Kubernetes experience",
+   "metadata": {
+    "role": "DevOps engineer",
+    "location": "Netherlands",
+    "skill": "Azure and Kubernetes"
+   }
+  },
+  {
+   "id": "q53",
+   "text": "Engineering leaders in NYC",
+   "metadata": {
+    "role": "engineering leader (manager or above)",
+    "location": "New York City"
+   }
+  },
+  {
+   "id": "q54",
+   "text": "AI engineers in the SF Bay Area",
+   "metadata": {
+    "role": "AI engineer",
+    "location": "San Francisco Bay Area"
+   }
+  },
+  {
+   "id": "q55",
+   "text": "Investment directors in China",
+   "metadata": {
+    "role": "investment director",
+    "location": "China"
+   }
+  },
+  {
+   "id": "q56",
+   "text": "Senior backend engineers in Bangalore",
+   "metadata": {
+    "role": "backend engineer",
+    "seniority": "senior",
+    "location": "Bangalore / Bengaluru"
+   }
+  },
+  {
+   "id": "q57",
+   "text": "Software engineers based in Sao Paulo, Brazil",
+   "metadata": {
+    "role": "software engineer",
+    "location": "Sao Paulo"
+   }
+  },
+  {
+   "id": "q58",
+   "text": "React developers in London",
+   "metadata": {
+    "role": "react developer",
+    "location": "London"
+   }
+  },
+  {
+   "id": "q59",
+   "text": "Software engineers in Tucson, Arizona",
+   "metadata": {
+    "role": "software engineer",
+    "location": "Tucson, Arizona"
+   }
+  },
+  {
+   "id": "q60",
+   "text": "Software Development Engineers in Brazil with 3+ years experience, skilled in distributed systems",
+   "metadata": {
+    "role": "software development engineer",
+    "location": "Brazil",
+    "skill": "distributed systems",
+    "tenure": "3+ years"
+   }
+  },
+  {
+   "id": "q61",
+   "text": "Chief Financial Officers",
+   "metadata": {
+    "role": "Chief Financial Officer"
+   }
+  },
+  {
+   "id": "q62",
+   "text": "Procurement director based in Singapore",
+   "metadata": {
+    "role": "procurement director",
+    "location": "Singapore"
+   }
+  },
+  {
+   "id": "q63",
+   "text": "VP of Engineering based in Brazil",
+   "metadata": {
+    "role": "VP of Engineering",
+    "location": "Brazil"
+   }
+  },
+  {
+   "id": "q64",
+   "text": "Software developers in Shenzhen",
+   "metadata": {
+    "role": "software developer",
+    "location": "Shenzhen"
+   }
+  },
+  {
+   "id": "q65",
+   "text": "HR business partners in Abu Dhabi",
+   "metadata": {
+    "role": "HR business partner",
+    "location": "Abu Dhabi"
+   }
+  },
+  {
+   "id": "q66",
+   "text": "Security engineers in Tel Aviv",
+   "metadata": {
+    "role": "security engineer",
+    "location": "Tel Aviv"
+   }
+  },
+  {
+   "id": "q67",
+   "text": "Data scientists in Toronto",
+   "metadata": {
+    "role": "data scientist",
+    "location": "Toronto"
+   }
+  },
+  {
+   "id": "q68",
+   "text": "Database internals and query engine engineers",
+   "metadata": {
+    "role": "database internals / query engine engineer"
+   }
+  },
+  {
+   "id": "q69",
+   "text": "Business operations managers in Mexico",
+   "metadata": {
+    "role": "business operations manager",
+    "location": "Mexico"
+   }
+  },
+  {
+   "id": "q70",
+   "text": "Product designers in Italy",
+   "metadata": {
+    "role": "product designer",
+    "location": "Italy"
+   }
+  },
+  {
+   "id": "q71",
+   "text": "Full-stack engineers in the San Francisco Bay Area",
+   "metadata": {
+    "role": "full-stack engineer",
+    "location": "San Francisco Bay Area"
+   }
+  },
+  {
+   "id": "q72",
+   "text": "Technical leads in Raleigh",
+   "metadata": {
+    "role": "technical lead",
+    "location": "Raleigh"
+   }
+  },
+  {
+   "id": "q73",
+   "text": "Firmware engineers in the Greater Atlanta area",
+   "metadata": {
+    "role": "firmware engineer",
+    "location": "Greater Atlanta"
+   }
+  },
+  {
+   "id": "q74",
+   "text": "Cloud engineers in Canada",
+   "metadata": {
+    "role": "cloud engineer",
+    "location": "Canada"
+   }
+  },
+  {
+   "id": "q75",
+   "text": "Solutions consultants in the Greater Phoenix area",
+   "metadata": {
+    "role": "solutions consultant",
+    "location": "Greater Phoenix"
+   }
+  },
+  {
+   "id": "q76",
+   "text": "Directors of partnerships in Greater New York",
+   "metadata": {
+    "role": "director of partnerships",
+    "location": "Greater New York"
+   }
+  },
+  {
+   "id": "q77",
+   "text": "Benefits managers in Atlanta",
+   "metadata": {
+    "role": "benefits manager",
+    "location": "Atlanta"
+   }
+  },
+  {
+   "id": "q78",
+   "text": "Accounts payable managers in Illinois",
+   "metadata": {
+    "role": "accounts payable manager",
+    "location": "Illinois"
+   }
+  },
+  {
+   "id": "q79",
+   "text": "Associate product managers in Leeds",
+   "metadata": {
+    "role": "associate product manager",
+    "location": "Leeds"
+   }
+  },
+  {
+   "id": "q80",
+   "text": "HR managers in the Greater Houston area",
+   "metadata": {
+    "role": "HR manager",
+    "location": "Greater Houston"
+   }
+  },
+  {
+   "id": "q81",
+   "text": "Account executives in Mountain View",
+   "metadata": {
+    "role": "account executive",
+    "location": "Mountain View"
+   }
+  },
+  {
+   "id": "q82",
+   "text": "Directors of sales in the United Arab Emirates",
+   "metadata": {
+    "role": "director of sales",
+    "location": "United Arab Emirates"
+   }
+  },
+  {
+   "id": "q83",
+   "text": "Directors of product management in Maryland",
+   "metadata": {
+    "role": "director of product management",
+    "location": "Maryland"
+   }
+  },
+  {
+   "id": "q84",
+   "text": "Engineering managers based in Portland",
+   "metadata": {
+    "role": "engineering manager",
+    "location": "Portland"
+   }
+  },
+  {
+   "id": "q85",
+   "text": "Data analysts in Greece",
+   "metadata": {
+    "role": "data analyst",
+    "location": "Greece"
+   }
+  },
+  {
+   "id": "q86",
+   "text": "Senior data analysts in Helsinki",
+   "metadata": {
+    "role": "data analyst",
+    "seniority": "senior",
+    "location": "Helsinki"
+   }
+  },
+  {
+   "id": "q87",
+   "text": "User researchers in Texas",
+   "metadata": {
+    "role": "user researcher",
+    "location": "Texas"
+   }
+  },
+  {
+   "id": "q88",
+   "text": "Heads of Data in Berlin",
+   "metadata": {
+    "role": "head of data",
+    "location": "Berlin"
+   }
+  },
+  {
+   "id": "q89",
+   "text": "Heads of Growth in Vienna",
+   "metadata": {
+    "role": "head of growth",
+    "location": "Vienna"
+   }
+  },
+  {
+   "id": "q90",
+   "text": "Senior product designers in Vancouver",
+   "metadata": {
+    "role": "product designer",
+    "seniority": "senior",
+    "location": "Vancouver"
+   }
+  },
+  {
+   "id": "q91",
+   "text": "Content marketing managers near Minnesota",
+   "metadata": {
+    "role": "Content Marketing Manager",
+    "location": "Minnesota"
+   }
+  },
+  {
+   "id": "q92",
+   "text": "Find Business Operations Managers in Mexico",
+   "metadata": {
+    "role": "Business Operations Manager",
+    "location": "Mexico"
+   }
+  },
+  {
+   "id": "q93",
+   "text": "Head of UX in SF",
+   "metadata": {
+    "role": "Head of UX",
+    "location": "SF"
+   }
+  },
+  {
+   "id": "q94",
+   "text": "Houston accounts receivable managers",
+   "metadata": {
+    "role": "Accounts Receivable Manager",
+    "location": "Houston"
+   }
+  },
+  {
+   "id": "q95",
+   "text": "Product designers in Italy",
+   "metadata": {
+    "role": "Product Designer",
+    "location": "Italy"
+   }
+  },
+  {
+   "id": "q96",
+   "text": "Utah head of recruiting",
+   "metadata": {
+    "role": "Head of Recruiting",
+    "location": "Utah"
+   }
+  },
+  {
+   "id": "q97",
+   "text": "Full stack engineer based in San Francisco Bay Area",
+   "metadata": {
+    "role": "Full Stack Engineer",
+    "location": "San Francisco Bay Area"
+   }
+  },
+  {
+   "id": "q98",
+   "text": "Business Operations Managers working in Austin",
+   "metadata": {
+    "role": "Business Operations Manager",
+    "location": "Austin"
+   }
+  },
+  {
+   "id": "q99",
+   "text": "Onboarding specialists in Mexico",
+   "metadata": {
+    "role": "Onboarding Specialist",
+    "location": "Mexico"
+   }
+  },
+  {
+   "id": "q100",
+   "text": "Firmware Engineers in Greater Atlanta area",
+   "metadata": {
+    "role": "Firmware Engineer",
+    "location": "Greater Atlanta"
+   }
+  }
+ ]
+}

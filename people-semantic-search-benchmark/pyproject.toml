@@ -1,0 +1,10 @@
+[project]
+name = "people-semantic-search-benchmark"
+version = "0.1.0"
+description = "Open benchmark for evaluating natural-language people search"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Crustdata", email = "divij@crustdata.co" }]
+keywords = ["benchmark", "search", "people", "evaluation", "llm"]
+dependencies = []

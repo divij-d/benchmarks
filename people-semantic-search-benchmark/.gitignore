@@ -1,0 +1,7 @@
+# Results. Raw captures contain person records - never commit them.
+data/*
+!data/queries
+
+# OS
+.DS_Store
+Thumbs.db
