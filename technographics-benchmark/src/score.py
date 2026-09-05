@@ -1,6 +1,7 @@
 """Aggregate the per-company comparisons into the panel leaderboard.
 
-    python -m src.score
+    python -m src.score                              every collected company
+    python -m src.score --domains stripe.com vercel.com   just these
 
 Reads data/results/companies/*.json and data/panel/panel.json, writes
 data/results/index.json (one line per company) and data/results/aggregates.json
@@ -79,8 +80,13 @@ def _ratio(num, den, floor):
     return (num / den) if den >= floor else None
 
 
-def company_files():
-    for f in sorted(COMPANIES.glob("*.json")):
+def company_files(domains=None):
+    files = ([COMPANIES / f"{d}.json" for d in domains] if domains
+             else sorted(COMPANIES.glob("*.json")))
+    for f in files:
+        if not f.exists():
+            print(f"{f.stem}: not collected yet - run `python -m src.collect {f.stem}` first")
+            continue
         try:
             c = json.loads(f.read_text())
         except json.JSONDecodeError:
@@ -89,7 +95,9 @@ def company_files():
             yield c
 
 
-def main():
+def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    domains = argv[argv.index("--domains") + 1:] if "--domains" in argv else None
     panel = {r["domain"]: r for r in load_panel()}
     agg = {p: {"all": _bucket()} for p in PROVIDERS}
     strata_counts = Counter()
@@ -101,7 +109,7 @@ def main():
     slim = []                                    # per-company rows kept for the bucket pass
     votes = defaultdict(Counter)                 # tech key -> bucket votes across the panel
 
-    for c in company_files():
+    for c in company_files(domains):
         row = panel.get(c["domain"], {})
         if row.get("defunct"):
             continue

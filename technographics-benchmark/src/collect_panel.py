@@ -62,7 +62,7 @@ def main():
     mins = (time.time() - t0) / 60
     print(f"\ndone: {len(todo) - len(failures)} ok, {len(failures)} failed "
           f"(logged to {FAILLOG.name}) in {mins:.1f} min")
-    score.main()
+    score.main([])
     return 0
 
 

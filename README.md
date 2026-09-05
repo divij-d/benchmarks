@@ -98,15 +98,26 @@ export PREDICT_LEADS_KEY="your-key"
 export PREDICT_LEADS_TOKEN="your-token"
 export BUILTWITH_API_KEY="your-key"
 export ANTHROPIC_API_KEY="your-key"     # optional, for LLM name normalization
+```
 
-python -m src.collect vercel.com stripe.com
-python -m src.collect_panel --smoke
-python -m src.normalize_llm --provider anthropic   # optional
+Specific companies:
+
+```bash
+python -m src.collect extern.com atlascard.com
+python -m src.normalize_llm --provider anthropic --domains extern.com atlascard.com   # optional
+python -m src.score --domains extern.com atlascard.com
+python -m src.report
+```
+
+The panel:
+
+```bash
+python -m src.collect_panel --smoke     # 20 companies; drop the flag for all 1,004
 python -m src.score
 python -m src.report
 ```
 
-`collect_panel` runs the full 1,004-company panel without `--smoke`. Every response is cached under `data/raw/`, so re-runs are free. The LLM step (also `openai`, `openrouter`, `deepseek`) merges leftover tech-name variants per company; without it, scores may read lower than reality for companies outside the benchmark panel.
+Every response is cached under `data/raw/`, so re-runs are free. The LLM step (also `openai`, `openrouter`, `deepseek`) merges leftover tech-name variants per company; without it, scores may read lower than reality for companies outside the benchmark panel.
 
 ## Implementing Your Own Searcher or Provider
 

@@ -1,9 +1,9 @@
 """Extend name normalization per company with an LLM (optional).
 
-    python -m src.normalize_llm --provider anthropic
-    python -m src.normalize_llm --provider openrouter --model deepseek/deepseek-chat
-    python -m src.normalize_llm --provider openai --domains stripe.com vercel.com
-    python -m src.normalize_llm --provider deepseek --dry-run
+    python -m src.normalize_llm --provider anthropic --domains stripe.com vercel.com
+    python -m src.normalize_llm --provider anthropic --all          # every collected company
+    python -m src.normalize_llm --provider openrouter --model deepseek/deepseek-chat --all
+    python -m src.normalize_llm --provider deepseek --dry-run --all
 
 Run after `src.collect` and before `src.score`. The committed alias and
 hierarchy tables were adjudicated over the benchmark panel; for other companies
@@ -147,10 +147,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(add_help=False)
     ap.add_argument("--provider", required=True, choices=sorted(PROVIDERS))
     ap.add_argument("--model", help="override the provider default")
-    ap.add_argument("--domains", nargs="*", help="default: every collected company")
+    ap.add_argument("--domains", nargs="*", help="companies to extend")
+    ap.add_argument("--all", action="store_true", help="extend every collected company (one LLM call each)")
     ap.add_argument("--force", action="store_true", help="redo companies that already have an extension")
     ap.add_argument("--dry-run", action="store_true", help="build prompts, call nothing")
     a = ap.parse_args(argv)
+    if not a.domains and not a.all:
+        ap.error("pass --domains <domain> ... or --all (one LLM call per collected company)")
     cfg = PROVIDERS[a.provider]
     model = a.model or cfg["model"]
     api_key = None if a.dry_run else _key(cfg["env"])

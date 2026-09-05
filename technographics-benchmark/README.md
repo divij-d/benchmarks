@@ -2,7 +2,7 @@
 
 Open benchmark for evaluating company technographics providers.
 
-## Usage
+## Setup
 
 ```bash
 export CRUSTDATA_API_KEY=...
@@ -11,20 +11,45 @@ export SUMBLE_API_KEY=...
 export PREDICT_LEADS_KEY=...
 export PREDICT_LEADS_TOKEN=...
 export BUILTWITH_API_KEY=...
-export ANTHROPIC_API_KEY=...                  # optional, for LLM name normalization
-
-python -m src.collect vercel.com stripe.com   # any companies
-python -m src.collect_panel --smoke           # 20-company sample of the panel
-python -m src.collect_panel                   # full panel
-python -m src.normalize_llm --provider anthropic   # optional; see below
-python -m src.score
-python -m src.report                          # add --majority for the strict 3-of-5 bar
+export ANTHROPIC_API_KEY=...        # optional, for the LLM name-normalization step
 ```
 
-The LLM step also accepts `openai`, `openrouter` and `deepseek` (keys
-`OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `DEEPSEEK_API_KEY`; `--model` overrides
-the default). **Without it, name merging is limited to the built-in tables, so
-scores may read lower than reality for companies outside the benchmark panel.**
+Python 3.9+, standard library only. Keys can also live in a gitignored `.env`
+in this folder. Leave a provider key unset to skip that provider. Every
+response is cached under `data/raw/`, so re-running anything is free.
+
+## Run specific companies
+
+```bash
+python -m src.collect extern.com atlascard.com
+python -m src.normalize_llm --provider anthropic --domains extern.com atlascard.com   # optional
+python -m src.score --domains extern.com atlascard.com
+python -m src.report
+```
+
+`collect` queries the five providers and writes one comparison file per
+company. `normalize_llm` makes one LLM call per listed company to merge
+tech-name variants the built-in tables missed (also `openai`, `openrouter`,
+`deepseek`; `--model` overrides the default). **Without it, name merging is
+limited to the built-in tables, so scores may read lower than reality for
+companies outside the benchmark panel.** `score --domains` aggregates only the
+companies you name; `report` prints the tables. Small runs are noisy.
+
+## Run the panel
+
+```bash
+python -m src.collect_panel --smoke        # 20 companies: 8 SMB, 5 mid-size, 7 established
+python -m src.collect_panel                # all 1,004 companies, then scores
+python -m src.normalize_llm --provider anthropic --all   # optional, one LLM call per company
+python -m src.score
+python -m src.report                       # add --majority for the strict 3-of-5 bar
+```
+
+`collect_panel` walks `data/panel/panel.json`, skips companies flagged
+`defunct`, logs failures to `data/results/panel_run_failures.json` for the next
+run to retry, and calls `score` when done. `score` without `--domains`
+aggregates every collected company. The panel companies are already covered by
+the built-in normalization tables, so the LLM step changes little there.
 
 ## Layout
 
