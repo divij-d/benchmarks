@@ -1,9 +1,9 @@
 """Aggregate the per-company comparisons into the panel leaderboard.
 
-    python -m src.score                              every collected company
-    python -m src.score --domains stripe.com vercel.com   just these
+    python -m src.score
 
-Reads data/results/companies/*.json and data/panel/panel.json, writes
+Reads every company collected so far (data/results/companies/*.json) plus
+data/panel/panel.json, and writes
 data/results/index.json (one line per company) and data/results/aggregates.json
 (per-provider metrics, overall and per stratum).
 
@@ -80,13 +80,8 @@ def _ratio(num, den, floor):
     return (num / den) if den >= floor else None
 
 
-def company_files(domains=None):
-    files = ([COMPANIES / f"{d}.json" for d in domains] if domains
-             else sorted(COMPANIES.glob("*.json")))
-    for f in files:
-        if not f.exists():
-            print(f"{f.stem}: not collected yet - run `python -m src.collect {f.stem}` first")
-            continue
+def company_files():
+    for f in sorted(COMPANIES.glob("*.json")):
         try:
             c = json.loads(f.read_text())
         except json.JSONDecodeError:
@@ -95,9 +90,7 @@ def company_files(domains=None):
             yield c
 
 
-def main(argv=None):
-    argv = sys.argv[1:] if argv is None else argv
-    domains = argv[argv.index("--domains") + 1:] if "--domains" in argv else None
+def main():
     panel = {r["domain"]: r for r in load_panel()}
     agg = {p: {"all": _bucket()} for p in PROVIDERS}
     strata_counts = Counter()
@@ -109,7 +102,7 @@ def main(argv=None):
     slim = []                                    # per-company rows kept for the bucket pass
     votes = defaultdict(Counter)                 # tech key -> bucket votes across the panel
 
-    for c in company_files(domains):
+    for c in company_files():
         row = panel.get(c["domain"], {})
         if row.get("defunct"):
             continue
@@ -288,6 +281,10 @@ def main(argv=None):
                              "category vote for their tech, so providers without "
                              "category metadata still pay for unconfirmed claims"),
     }
+    if not index:
+        print("nothing collected yet - run `python -m src.collect <domain>` or "
+              "`python -m src.collect_panel --limit N` first", file=sys.stderr)
+        return 1
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "index.json").write_text(json.dumps(index, indent=1))
     (RESULTS / "aggregates.json").write_text(json.dumps(aggregates, indent=1))

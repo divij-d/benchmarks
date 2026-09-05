@@ -22,34 +22,31 @@ response is cached under `data/raw/`, so re-running anything is free.
 
 ```bash
 python -m src.collect extern.com atlascard.com
-python -m src.normalize_llm --provider anthropic --domains extern.com atlascard.com   # optional
-python -m src.score --domains extern.com atlascard.com
+python -m src.normalize_llm --provider anthropic   # optional
+python -m src.score
 python -m src.report
 ```
-
-`collect` queries the five providers and writes one comparison file per
-company. `normalize_llm` makes one LLM call per listed company to merge
-tech-name variants the built-in tables missed (also `openai`, `openrouter`,
-`deepseek`; `--model` overrides the default). **Without it, name merging is
-limited to the built-in tables, so scores may read lower than reality for
-companies outside the benchmark panel.** `score --domains` aggregates only the
-companies you name; `report` prints the tables. Small runs are noisy.
 
 ## Run the panel
 
 ```bash
-python -m src.collect_panel --smoke        # 20 companies: 8 SMB, 5 mid-size, 7 established
-python -m src.collect_panel                # all 1,004 companies, then scores
-python -m src.normalize_llm --provider anthropic --all   # optional, one LLM call per company
+python -m src.collect_panel --limit 20     # first 20 panel companies; omit for all 1,004
+python -m src.normalize_llm --provider anthropic   # optional
 python -m src.score
 python -m src.report                       # add --majority for the strict 3-of-5 bar
 ```
 
-`collect_panel` walks `data/panel/panel.json`, skips companies flagged
-`defunct`, logs failures to `data/results/panel_run_failures.json` for the next
-run to retry, and calls `score` when done. `score` without `--domains`
-aggregates every collected company. The panel companies are already covered by
-the built-in normalization tables, so the LLM step changes little there.
+`collect` and `collect_panel` only differ in where the company list comes
+from: your arguments, or `data/panel/panel.json` (defunct companies skipped,
+failures logged to `data/results/panel_run_failures.json` and retried next
+run). Both write one comparison file per company to `data/results/companies/`.
+Every step after that works on whatever has been collected so far:
+`normalize_llm` makes one LLM call per company to merge tech-name variants the
+built-in tables missed (also `openai`, `openrouter`, `deepseek`; `--model`
+overrides the default), `score` aggregates, `report` prints the tables.
+**Without the LLM step, name merging is limited to the built-in tables, so
+scores may read lower than reality for companies outside the benchmark
+panel.** Small runs are noisy; the published numbers average 1,004 companies.
 
 ## Layout
 

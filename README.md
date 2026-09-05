@@ -104,20 +104,21 @@ Specific companies:
 
 ```bash
 python -m src.collect extern.com atlascard.com
-python -m src.normalize_llm --provider anthropic --domains extern.com atlascard.com   # optional
-python -m src.score --domains extern.com atlascard.com
+python -m src.normalize_llm --provider anthropic   # optional
+python -m src.score
 python -m src.report
 ```
 
 The panel:
 
 ```bash
-python -m src.collect_panel --smoke     # 20 companies; drop the flag for all 1,004
+python -m src.collect_panel --limit 20     # omit --limit for all 1,004
+python -m src.normalize_llm --provider anthropic   # optional
 python -m src.score
 python -m src.report
 ```
 
-Every response is cached under `data/raw/`, so re-runs are free. The LLM step (also `openai`, `openrouter`, `deepseek`) merges leftover tech-name variants per company; without it, scores may read lower than reality for companies outside the benchmark panel.
+`score` and `report` work on everything collected so far. Every response is cached under `data/raw/`, so re-runs are free. The LLM step (also `openai`, `openrouter`, `deepseek`) merges leftover tech-name variants per company; without it, scores may read lower than reality for companies outside the benchmark panel.
 
 ## Implementing Your Own Searcher or Provider
 

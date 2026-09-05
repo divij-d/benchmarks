@@ -109,7 +109,7 @@ def main():
         run_company(d, force=force)
     if not all(load_extensions(d) for d in domains):
         print(NO_LLM_WARNING)
-    print("\nRun `python -m src.score` to rebuild the panel aggregates.")
+    print("\nRun `python -m src.score` to aggregate everything collected so far.")
     return 0
 
 
