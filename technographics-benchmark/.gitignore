@@ -1,0 +1,13 @@
+# Results and raw captures contain provider payloads - never commit them.
+data/raw/
+data/results/
+
+# Per-run LLM normalization output (derived from provider payloads)
+data/normalization/llm_extensions/
+
+# Keys
+.env
+
+# OS
+.DS_Store
+Thumbs.db

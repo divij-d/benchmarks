@@ -1,0 +1,10 @@
+[project]
+name = "technographics-benchmark"
+version = "0.1.0"
+description = "Open benchmark for evaluating company technographics providers"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Crustdata", email = "divij@crustdata.co" }]
+keywords = ["benchmark", "technographics", "company-data", "evaluation"]
+dependencies = []
