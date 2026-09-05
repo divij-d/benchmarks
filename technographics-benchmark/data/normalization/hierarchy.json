@@ -1,5 +1,5 @@
 {
- "_comment": "Parent-child technology relationships (LLM-adjudicated, 2026-08-24). These are NOT aliases: child is a distinct product/component under the parent umbrella. Scoring policy (to implement): a provider reporting any child gets umbrella-level credit for the parent when another provider reports only the parent; children also count individually for depth. Cruft-suspect keys listed separately for the precision audit.",
+ "_comment": "LLM-adjudicated parent-child technology relationships. These are NOT aliases: the child is a distinct product or component under the parent umbrella. Scoring: a provider reporting any child counts as having found the parent; reporting the parent never grants a child. cruft_suspects are bare vendor umbrellas (claims true of nearly every company) that receive no rollup credit.",
  "parents": {
   "amazon-dynamodb": "amazon",
   "amazon-elasticache": "amazon",
@@ -2945,9 +2945,9 @@
   "hello-elementor": "elementor"
  },
  "notes": {
-  "react-native": "Distinct technology from react in most buyer contexts; umbrella credit debatable \u2014 flagged for policy review.",
-  "azure-databricks": "Also child-of databricks conceptually; multi-parent case.",
-  "ambiguity_refusals": "NOT merged (name collisions): compose (docker vs jetpack), vault (hashicorp vs azure-key-vault), aurora (amazon vs apache), blueprint, catalyst, canvas, delta (delta-lake vs airline), vertex (vertex-ai vs vertex tax), zephyr (rtos vs test tool), agility, active-directory vs azure-active-directory kept distinct. | 2026-08-26: composer vs visual-composer (php vs wpbakery); tower vs aws-control-tower; access vs ms-access (access cruft); pub-html5 vs html5; sutra-tools plugin vs google-sheets"
+  "react-native": "Distinct technology from react in most buyer contexts; umbrella credit is debatable.",
+  "azure-databricks": "Also conceptually a child of databricks; multi-parent case, single parent kept.",
+  "ambiguity_refusals": "NOT merged (name collisions): compose (docker vs jetpack), vault (hashicorp vs azure-key-vault), aurora (amazon vs apache), blueprint, catalyst, canvas, delta (delta-lake vs airline), vertex (vertex-ai vs vertex tax), zephyr (rtos vs test tool), agility, active-directory vs azure-active-directory, composer vs visual-composer (php vs wpbakery), tower vs aws-control-tower, access vs ms-access, pub-html5 vs html5, sutra-tools plugin vs google-sheets."
  },
  "cruft_suspects": [
   "800.com",

@@ -9985,7 +9985,7 @@
    "domain": "vercel.com",
    "name": "Vercel",
    "stratum": "established",
-   "source": "pilot (reclassified 2026-08-26 by measured headcount)",
+   "source": "hand-picked (stratum from measured headcount)",
    "measured_employee_range": "501-1000",
    "source_url": "packs/technographics/raw/crustdata/vercel.com.json"
   },
@@ -9993,7 +9993,7 @@
    "domain": "resend.com",
    "name": "Resend",
    "stratum": "smb_software",
-   "source": "pilot (reclassified 2026-08-26 by measured headcount)",
+   "source": "hand-picked (stratum from measured headcount)",
    "measured_employee_range": "11-50",
    "source_url": "packs/technographics/raw/crustdata/resend.com.json"
   },
@@ -10001,7 +10001,7 @@
    "domain": "slack.com",
    "name": "Slack",
    "stratum": "established",
-   "source": "pilot (reclassified 2026-08-26 by measured headcount)",
+   "source": "hand-picked (stratum from measured headcount)",
    "measured_employee_range": "1001-5000",
    "source_url": "packs/technographics/raw/crustdata/slack.com.json"
   },
@@ -10009,7 +10009,7 @@
    "domain": "allbirds.com",
    "name": "Allbirds",
    "stratum": "midsize_tech",
-   "source": "pilot (reclassified 2026-08-26 by measured headcount)",
+   "source": "hand-picked (stratum from measured headcount)",
    "measured_employee_range": "201-500",
    "source_url": "packs/technographics/raw/crustdata/allbirds.com.json"
   },
@@ -10017,7 +10017,7 @@
    "domain": "fedex.com",
    "name": "Fedex",
    "stratum": "established",
-   "source": "pilot (reclassified 2026-08-26 by measured headcount)",
+   "source": "hand-picked (stratum from measured headcount)",
    "measured_employee_range": "10001+",
    "source_url": "packs/technographics/raw/crustdata/fedex.com.json"
   }

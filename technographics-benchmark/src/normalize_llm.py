@@ -11,8 +11,8 @@ call each; companies that already have an extension are skipped unless
 Run after `src.collect` and before `src.score`. The committed alias and
 hierarchy tables were adjudicated over the benchmark panel; for other companies
 leftover name variants stay unmerged and scores read lower than reality. This
-step mirrors the site's bring-your-own-key page: one call per company, given
-the keys claimed by a single provider and the full key list, returns
+step makes one call per company which, given the keys claimed by a single
+provider and the full key list, returns
 
   merges   singleton key -> the key it is the same product as
   parents  key -> umbrella key it is a component of
@@ -116,7 +116,8 @@ def key_sets(comparison):
 
 
 def validate(merges, parents, universe):
-    """Keep only what the site's BYOK page would apply."""
+    """Keep only merges into keys the company actually has, and parent links
+    whose parent is a real key and not a bare vendor umbrella."""
     ok_m = {f: t for f, t in merges.items()
             if isinstance(t, str) and f != t and f in universe and t in universe}
     ok_p = {c: p for c, p in parents.items()

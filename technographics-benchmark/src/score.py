@@ -109,13 +109,13 @@ def main():
         index.append({
             "domain": c["domain"],
             "name": row.get("name") or c["domain"],
-            "stratum": row.get("stratum") or "pilot",
+            "stratum": row.get("stratum") or "unknown",
             "matched": c["matched"],
             "tech_counts": c["summary"]["tech_counts"],
             "union_size": c["summary"]["union_size"],
             "corroborated": c["summary"]["corroborated"],
         })
-        stratum = row.get("stratum") or "pilot"
+        stratum = row.get("stratum") or "unknown"
         strata_counts[stratum] += 1
         llm_normalized += bool((c.get("normalization") or {}).get("llm"))
         s = c["summary"]

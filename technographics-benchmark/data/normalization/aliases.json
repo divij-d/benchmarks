@@ -1,5 +1,5 @@
 {
- "_comment": "LLM-adjudicated alias merges (model: claude, in-session, 2026-08-24/25). Each entry: variant -> canonical Veritas key. Only same-technology identities; parent-child/granularity pairs live in hierarchy.json. Adjudication is LLM-only by explicit decision (2026-08-25) \u2014 no human review pass; ambiguous name collisions are refused rather than merged (see hierarchy.json notes.ambiguity_refusals). Panel-scale pass 2026-08-25: rule layer (umbrella children -> hierarchy; -cdn/-hosted/-js detection variants -> alias) + in-session adjudication.",
+ "_comment": "LLM-adjudicated alias merges: variant -> canonical key, same technology under two names only. Parent-child and granularity pairs live in hierarchy.json. Ambiguous name collisions are refused rather than merged (see hierarchy.json notes.ambiguity_refusals). Detection variants such as -cdn, -hosted and -js suffixes alias to the base technology.",
  "dato-cms": "datocms",
  "hugging-face": "huggingface",
  "mac-os": "macos",
