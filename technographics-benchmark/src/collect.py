@@ -37,53 +37,58 @@ def _http_error(env):
     return f"  !! HTTP {env.get('http_status')}: {json.dumps(env.get('response'))[:160]}"
 
 
+def _first(env):
+    """The envelope to report on: a list's first page, a Sumble bundle's techs/match."""
+    if isinstance(env, list):
+        return env[0] if env else None
+    if isinstance(env, dict) and "match" in env:
+        return env.get("techs") or env.get("match")
+    return env
+
+
 def run_company(domain: str, force: bool = False):
+    """Fetch + parse every provider. A provider whose key is not set (and whose
+    response is not cached) is skipped and recorded as NOT RUN for this company,
+    so it drops out of the denominators instead of scoring a miss."""
     print(f"=== {domain} ===")
+    parsed = []
+    for mod in (crustdata, theirstack, sumble, predictleads, builtwith):
+        name = mod.__name__.rsplit(".", 1)[-1]
+        try:
+            env = mod.fetch(domain, force=force)
+        except RuntimeError as e:  # missing API key
+            if "not set" not in str(e):
+                raise
+            print(f"  {name}: skipped (no key)")
+            continue
+        out = mod.parse(env)
+        if out["meta"].get("skipped"):
+            print(f"  {name}: skipped (no key)")
+            continue
+        first = _first(env)
+        m = out["meta"]
+        extra = ""
+        if name == "sumble":
+            extra = f" credits_used={m.get('credits_used_techs')} remaining={m.get('credits_remaining')}"
+            if not out["matched"] and mod.exhausted(env):
+                print(f"  {name}: skipped (credits exhausted)")
+                continue  # credit exhaustion is NOT RUN, never a coverage miss
+        elif name in ("theirstack", "predictleads"):
+            extra = f" pages={m.get('pages')}"
+        elif name == "builtwith":
+            if m.get("errors"):
+                extra = f"  !! {json.dumps(m['errors'])[:160]}"
+            else:
+                extra = (f" (noise filtered={m.get('noise_rows_filtered')}, "
+                         f"paths={m.get('paths_used')}+{m.get('paths_skipped')} skipped)")
+        print(f"  {name}: cache={(first or {}).get('_from_cache')} matched={out['matched']} "
+              f"techs={len(out['techs'])}{extra} latency={m.get('latency_ms')}ms"
+              + _http_error(first))
+        parsed.append(out)
 
-    cd_env = crustdata.fetch(domain, force=force)
-    cd = crustdata.parse(cd_env)
-    print(f"  crustdata: cache={cd_env['_from_cache']} matched={cd['matched']} "
-          f"techs={len(cd['techs'])} latency={cd_env['latency_ms']}ms" + _http_error(cd_env))
-
-    ts_envs = theirstack.fetch(domain, force=force)
-    ts = theirstack.parse(ts_envs)
-    print(f"  theirstack: cache={ts_envs[0]['_from_cache']} matched={ts['matched']} "
-          f"techs={len(ts['techs'])} pages={ts['meta'].get('pages')} "
-          f"latency={ts['meta'].get('latency_ms')}ms" + _http_error(ts_envs[0]))
-
-    sb_bundle = sumble.fetch(domain, force=force)
-    sb = sumble.parse(sb_bundle)
-    sb_exhausted = not sb["matched"] and sumble.exhausted(sb_bundle)
-    sb_env = sb_bundle.get("techs") or sb_bundle.get("match") or {}
-    print(f"  sumble: cache={sb_env.get('_from_cache')} matched={sb['matched']} "
-          f"techs={len(sb['techs'])} credits_used={sb['meta'].get('credits_used_techs')} "
-          f"remaining={sb['meta'].get('credits_remaining')}"
-          + ("  [SKIPPED: credits exhausted]" if sb_exhausted else "") + _http_error(sb_env))
-
-    pl_envs = predictleads.fetch(domain, force=force)
-    pl = predictleads.parse(pl_envs)
-    print(f"  predictleads: cache={pl_envs[0]['_from_cache']} matched={pl['matched']} "
-          f"techs={len(pl['techs'])} pages={pl['meta'].get('pages')} "
-          f"latency={pl['meta'].get('latency_ms')}ms" + _http_error(pl_envs[0]))
-
-    # a credit-exhausted provider is recorded as NOT RUN for this company, so
-    # it drops out of the denominators instead of scoring a coverage miss
-    parsed = [cd, ts, pl] if sb_exhausted else [cd, ts, sb, pl]
-
-    bw_env = builtwith.fetch(domain, force=force)
-    bw = builtwith.parse(bw_env)
-    if bw["meta"].get("skipped"):
-        print("  builtwith: skipped (no key)")
-    else:
-        if bw["meta"].get("errors"):
-            print(f"  builtwith: matched=False  !! {json.dumps(bw['meta']['errors'])[:160]}")
-        print(f"  builtwith: cache={bw_env['_from_cache']} matched={bw['matched']} "
-              f"techs={len(bw['techs'])} "
-              f"(noise filtered={bw['meta'].get('noise_rows_filtered')}, "
-              f"paths={bw['meta'].get('paths_used')}+{bw['meta'].get('paths_skipped')} skipped) "
-              f"latency={bw['meta'].get('latency_ms')}ms")
-        parsed.append(bw)
-
+    if len(parsed) < 2:
+        print("  !! fewer than two providers ran - nothing to compare; set more provider keys")
+        return None
     ext = load_extensions(domain)
     comparison = build_comparison(domain, parsed, ext)
     if ext:

@@ -69,7 +69,8 @@ src/providers/                   one fetch/parse module per provider
 | Established (500+ employees, all industries) | 343 | Wikidata |
 
 Sources are provider-neutral: the panel was never drawn from any benchmarked
-provider's own index. Every provider was run on every company.
+provider's own index. Every provider was run on every company. One established
+company is flagged `defunct` and excluded from scoring, leaving 1,004.
 
 ## Name normalization
 
