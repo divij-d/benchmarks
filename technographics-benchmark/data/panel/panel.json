@@ -1,7 +1,7 @@
 {
  "generated": "seeded, reproducible - see src/generate_panel.py",
  "seed": 42,
- "note": "bw_ignored flags BuiltWith's published Ignore List membership (coverage denominator stated up front). defunct rows are excluded from every aggregate.",
+ "note": "bw_ignored flags BuiltWith's published Ignore List membership (coverage denominator stated up front).",
  "companies": [
   {
    "domain": "kingdomsuperculture.com",
@@ -5942,17 +5942,6 @@
    "source_url": "https://www.ycombinator.com/companies/thrive-agric",
    "bw_ignored": false,
    "stratum": "midsize_tech"
-  },
-  {
-   "domain": "bankhaus-lampe.de",
-   "name": "Bankhaus Lampe",
-   "source": "wikidata",
-   "employees_at_selection": 675,
-   "source_url": "https://www.wikidata.org/wiki/Q806772",
-   "bw_ignored": false,
-   "stratum": "established",
-   "defunct": true,
-   "defunct_reason": "merged into Hauck Aufhäuser Lampe 2021 (F-001)"
   },
   {
    "domain": "cvc.com",

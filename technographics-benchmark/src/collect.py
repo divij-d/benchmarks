@@ -87,7 +87,8 @@ def run_company(domain: str, force: bool = False):
         parsed.append(out)
 
     if len(parsed) < 2:
-        print("  !! fewer than two providers ran - nothing to compare; set more provider keys")
+        print(f"  !! only {len(parsed)} provider(s) ran for {domain} - consensus needs at least two. "
+              "Nothing written; set more provider keys (or fix the errors above) and re-run.")
         return None
     ext = load_extensions(domain)
     comparison = build_comparison(domain, parsed, ext)
@@ -110,10 +111,13 @@ def main():
     if not domains:
         print(__doc__.strip())
         return 1
-    for d in domains:
-        run_company(d, force=force)
+    failed = [d for d in domains if run_company(d, force=force) is None]
     if not all(load_extensions(d) for d in domains):
         print(NO_LLM_WARNING)
+    if failed:
+        print(f"\n!! not compared (fewer than two providers ran): {', '.join(failed)}. "
+              "Set at least two provider keys and re-run; cached responses are reused.")
+        return 1
     print("\nRun `python -m src.score` to aggregate everything collected so far.")
     return 0
 

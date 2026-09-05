@@ -15,8 +15,12 @@ export ANTHROPIC_API_KEY=...        # optional, for the LLM name-normalization s
 ```
 
 Python 3.9+, standard library only. Keys can also live in a gitignored `.env`
-in this folder. Leave a provider key unset to skip that provider. Every
-response is cached under `data/raw/`, so re-running anything is free.
+in this folder. Any provider whose key is unset is skipped: its data is not
+fetched and it is recorded as not run for that company, so it drops out of the
+denominators rather than scoring a miss. Consensus needs at least two
+providers; a company where fewer than two ran is reported as an error and no
+comparison is written. Every response is cached under `data/raw/`, so
+re-running anything is free.
 
 ## Run specific companies
 
@@ -37,9 +41,8 @@ python -m src.report                       # add --majority for the strict 3-of-
 ```
 
 `collect` and `collect_panel` only differ in where the company list comes
-from: your arguments, or `data/panel/panel.json` (defunct companies skipped,
-failures logged to `data/results/panel_run_failures.json` and retried next
-run). Both write one comparison file per company to `data/results/companies/`.
+from: your arguments, or `data/panel/panel.json` (failures logged to
+`data/results/panel_run_failures.json` and retried next run). Both write one comparison file per company to `data/results/companies/`.
 Every step after that works on whatever has been collected so far:
 `normalize_llm` makes one LLM call per company to merge tech-name variants the
 built-in tables missed (also `openai`, `openrouter`, `deepseek`; `--model`
@@ -51,7 +54,7 @@ panel.** Small runs are noisy; the published numbers average 1,004 companies.
 ## Layout
 
 ```
-data/panel/panel.json            the eval set: 1,005 companies with stratum, source URL, flags
+data/panel/panel.json            the eval set: 1,004 companies with stratum, source URL, flags
 data/panel/wikidata_established.json  committed Wikidata snapshot the established stratum is drawn from
 data/normalization/              alias table, hierarchy, category mapping, LLM tech categories (committed)
 data/normalization/llm_extensions/   per-company LLM merges from src.normalize_llm (gitignored)
@@ -66,11 +69,10 @@ src/providers/                   one fetch/parse module per provider
 |---|---:|---|
 | SMB software (10-50 employees) | 401 | YC directory |
 | Mid-size tech (51-500 employees) | 261 | YC directory |
-| Established (500+ employees, all industries) | 343 | Wikidata |
+| Established (500+ employees, all industries) | 342 | Wikidata |
 
 Sources are provider-neutral: the panel was never drawn from any benchmarked
-provider's own index. Every provider was run on every company. One established
-company is flagged `defunct` and excluded from scoring, leaving 1,004.
+provider's own index. Every provider was run on every company.
 
 ## Name normalization
 
@@ -101,12 +103,12 @@ LLM step applied.
 - Consensus, not ground truth. A tech counts when at least 2 of 5 providers
   report it (or a strict majority of 3 with `--majority`). No claim-level
   verification has been performed.
-- One panel company is flagged `defunct` (merged into another entity) and is
-  excluded from every provider's aggregates: a live-index provider must never
-  lose score for correctly not carrying a dead company.
+- One originally selected company had merged into another entity; it was
+  removed from the panel so that a live-index provider never loses score for
+  correctly not carrying a dead company.
 - A Crustdata match row with `company_data: null` is treated as not matched.
 - Sumble publishes no dates, so it cannot be scored on the fresh track.
 - Latency is client-observed wall time per company, measured identically for
   all providers.
-- A provider that fails a company for credit reasons is recorded as not run
-  there and drops out of that company's denominators only.
+- A provider that was not run on a company (no key, or credit exhaustion) is
+  recorded as not run there and drops out of that company's denominators only.

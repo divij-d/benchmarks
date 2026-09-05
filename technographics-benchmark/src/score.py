@@ -19,9 +19,9 @@ providers agree on it - at least 2 of 5 ("pair"), or a strict majority of 3
 
 Guards: a company contributes to a provider's recall / F1 only when it has at
 least MIN_CONSENSUS consensus techs; to precision only when the provider made
-at least MIN_CLAIMS claims there. Companies flagged `defunct` in the panel are
-excluded for every provider; a provider that was not run on a company (credit
-exhaustion) is excluded from that company's denominators only.
+at least MIN_CLAIMS claims there. A provider that was not run on a company
+(no key, or credit exhaustion) is excluded from that company's denominators
+only.
 
 Per-category F1 buckets every claim before scoring: a row keeps the bucket its
 own providers voted for; a row with no vote inherits the panel-wide modal

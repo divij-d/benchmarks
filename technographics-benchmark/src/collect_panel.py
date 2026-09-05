@@ -9,9 +9,8 @@ writes one comparison file per company to data/results/companies/. Cache-first
 end to end: every provider response is written to data/raw/ before parsing, so
 re-running is free and resumes where it stopped. One company's error never
 kills the batch; failures are logged to data/results/panel_run_failures.json
-and retried on the next run. Companies flagged `defunct` in the panel are
-skipped - a live-index provider must never lose score for correctly not
-carrying a dead company.
+and retried on the next run. A company where fewer than two providers ran
+(missing keys or failed calls) is also logged as a failure.
 
 Then: python -m src.normalize_llm --provider <llm>  (optional)
       python -m src.score
@@ -29,7 +28,7 @@ PACE_SLEEP = 1.0   # seconds between companies, on top of sequential provider ca
 
 
 def main():
-    rows = [r for r in load_panel() if r.get("domain") and not r.get("defunct")]
+    rows = [r for r in load_panel() if r.get("domain")]
     limit = None
     if "--limit" in sys.argv:
         try:
@@ -49,7 +48,8 @@ def main():
         dom = row["domain"]
         print(f"[{i}/{len(todo)}] {dom} ({row['stratum']})")
         try:
-            run_company(dom)
+            if run_company(dom) is None:
+                failures[dom] = "fewer than two providers ran"
         except Exception as e:
             print(f"  !! FAILED: {e}")
             failures[dom] = str(e)

@@ -14,8 +14,9 @@ Deterministic: seeded RNG, committed sources, source URL recorded per row.
 Screening: domain normalisation and dedupe, benchmarked providers excluded,
 BuiltWith's published Ignore List flagged (rows stay in the panel, marked
 bw_ignored so the coverage denominator is stated up front). Makes no provider
-API calls. The committed panel additionally carries hand-applied flags
-(`defunct`, reclassified strata) that this script does not reproduce."""
+API calls. The committed panel additionally carries a few hand-applied
+stratum reclassifications and the removal of one defunct company, which this
+script does not reproduce."""
 
 import json
 import random
@@ -133,8 +134,7 @@ def main():
         "generated": "seeded, reproducible - see src/generate_panel.py",
         "seed": SEED,
         "note": ("bw_ignored flags BuiltWith's published Ignore List membership "
-                 "(coverage denominator stated up front). defunct rows are excluded "
-                 "from every aggregate."),
+                 "(coverage denominator stated up front)."),
         "companies": panel,
     }, indent=1))
     print(f"\npanel written: {len(panel)} companies -> {PANEL.relative_to(ROOT)}")
