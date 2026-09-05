@@ -16,11 +16,12 @@ Every file is optional and the scorer runs with whatever is present:
                           child is a distinct product under the parent
                           umbrella; cruft suspects are bare vendor umbrellas
                           that get no rollup credit
-  category_crosswalk.json each provider's category vocabulary -> 6 buckets
-                          (committed)
-  llm_bucket_fallback.json / confirmed_bucket_overrides.json
-                          {"tech-key": "bucket"}  used by score.py for techs
-                          no provider categorised
+  category_crosswalk.json each provider's category vocabulary -> 6 buckets,
+                          plus tech_overrides {"tech-key": "bucket"} for
+                          audit-confirmed corrections
+  llm_tech_categories.json
+                          {"tech-key": "bucket"}  LLM categories for techs no
+                          provider categorised, used by score.py
   llm_extensions/<domain>.json
                           per-company merges + parents produced by
                           src.normalize_llm for the run at hand (gitignored)

@@ -31,7 +31,7 @@ scores may read lower than reality for companies outside the benchmark panel.**
 ```
 data/panel/panel.json            the eval set: 1,005 companies with stratum, source URL, flags
 data/panel/wikidata_established.json  committed Wikidata snapshot the established stratum is drawn from
-data/normalization/              alias table, hierarchy, category crosswalk, bucket tables (committed)
+data/normalization/              alias table, hierarchy, category mapping, LLM tech categories (committed)
 data/normalization/llm_extensions/   per-company LLM merges from src.normalize_llm (gitignored)
 data/raw/                        cached provider responses (gitignored)
 data/results/                    per-company comparisons, aggregates, summary (gitignored)
@@ -60,8 +60,8 @@ lower-cased, hyphenated and passed through the committed tables under
 |---|---|---|
 | `aliases.json` | `{"variant": "canonical"}` | merges two names for one technology |
 | `hierarchy.json` | `{"parents": {"child": "parent"}, "cruft_suspects": [...]}` | a provider reporting any child counts as finding the parent; cruft suspects (bare vendor umbrellas) get no such credit |
-| `category_crosswalk.json` | provider category -> bucket | maps each provider's own category vocabulary onto six shared buckets |
-| `llm_bucket_fallback.json`, `confirmed_bucket_overrides.json` | `{"tech": "bucket"}` | category for techs no provider labelled, used by the per-category view |
+| `category_crosswalk.json` | provider category -> bucket, plus `tech_overrides` `{"tech": "bucket"}` | maps each provider's own category vocabulary onto six shared buckets; the overrides pin audit-confirmed corrections ahead of the vote |
+| `llm_tech_categories.json` | `{"tech": "bucket"}` | LLM-assigned category for techs no provider labelled anywhere in the panel, so unconfirmed claims of them still count against per-category precision |
 
 These tables were adjudicated by an LLM over the panel's raw names, so they
 cover the panel well. For companies outside it, `python -m src.normalize_llm`

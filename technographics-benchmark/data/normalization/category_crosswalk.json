@@ -1,5 +1,5 @@
 {
-  "_note": "Maps each provider's top-level category vocabulary into 6 shared buckets. Bucket per consensus tech = modal vote across providers (CD/TS/Sumble weighted; BW tag as fallback; PredictLeads exposes no categories). Values mapped to null are deliberately unbucketed.",
+  "_note": "Category mapping. Each provider's own category vocabulary maps into 6 shared buckets; a tech's bucket is the modal vote across providers (Crustdata/TheirStack/Sumble weighted; BuiltWith tag as fallback; PredictLeads exposes no categories). Values mapped to null are deliberately unbucketed. tech_overrides pins specific techs to a bucket ahead of every other source: audit-confirmed misassignments, most caused by modal-vote ties resolving to the alphabetically last bucket.",
   "buckets": {
     "gtm": "GTM",
     "eng": "Engineering",
@@ -90,5 +90,26 @@
     "Web Master": null,
     "operations": null,
     "agency": null
+  },
+  "tech_overrides": {
+    "git": "eng",
+    "sap-erp-central-component-ecc": "peoplefin",
+    "microsoft-word": "collab",
+    "dbt": "data",
+    "microsoft-outlook": "collab",
+    "amazon-rds": "eng",
+    "google-sheets": "collab",
+    "artifactory": "eng",
+    "microsoft-transact-sql": "data",
+    "xml": "eng",
+    "microsoft-visio": "collab",
+    "unix": "eng",
+    "clearbit": "gtm",
+    "amazon-bedrock": "data",
+    "lucidchart": "collab",
+    "kaggle": "data",
+    "html": "eng",
+    "css": "eng",
+    "spring": "eng"
   }
 }

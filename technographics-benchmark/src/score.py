@@ -24,7 +24,7 @@ exhaustion) is excluded from that company's denominators only.
 
 Per-category F1 buckets every claim before scoring: a row keeps the bucket its
 own providers voted for; a row with no vote inherits the panel-wide modal
-bucket for that tech, then the committed LLM grade, so providers that publish
+bucket for that tech, then the LLM category table, so providers that publish
 no category metadata still pay for unconfirmed claims. A category is graded
 for a company only when it holds at least MIN_BUCKET_N consensus techs."""
 
@@ -210,12 +210,13 @@ def main():
                       for r in rows]))
 
     # ---- per-category F1 (fair: every claim bucketed before scoring) ----
-    def _load(name):
+    def _load(name, section=None):
         p = NORM_DIR / name
         d = json.loads(p.read_text()) if p.exists() else {}
+        d = d.get(section) or {} if section else d
         return {k: v for k, v in d.items() if v in BUCKETS}
-    llm_bucket = _load("llm_bucket_fallback.json")
-    overrides = _load("confirmed_bucket_overrides.json")   # audit-confirmed; outrank all
+    llm_bucket = _load("llm_tech_categories.json")                          # lowest precedence
+    overrides = _load("category_crosswalk.json", "tech_overrides")         # audit-confirmed; outrank all
     global_bucket = {k: min(sorted(v.items(), key=lambda kv: (-kv[1], kv[0])))[0]
                      for k, v in votes.items()}
     cat = {bk: defaultdict(lambda: {"r": [0.0, 0], "f": [0.0, 0], "f2": [0.0, 0]})
