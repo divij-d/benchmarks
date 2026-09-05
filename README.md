@@ -7,7 +7,7 @@ Open benchmarks for evaluating people search and company data APIs.
 | Benchmark | Queries | Tracks | Description |
 |-----------|---------|--------|-------------|
 | [People Semantic Search](people-semantic-search-benchmark/) | 100 | Retrieval | Find people by role, location, seniority, industry, and work history from natural-language queries |
-| [Technographics](technographics-benchmark/) | 1,004 companies | All-time, Fresh | Which provider knows a company's tech stack: five providers scored on recall, precision, and F1 against cross-provider consensus |
+| [Technographics](technographics-benchmark/) | 1,004 companies | All-time, Fresh, Category | Which provider knows a company's tech stack: five providers scored on recall, precision, and F1 against cross-provider consensus |
 
 ## People Semantic Search Results
 
@@ -48,12 +48,24 @@ Five providers run on the same 1,004 companies (SMB software, mid-size tech, and
 | theirstack | 42.4% | 29.1% | 55.7% |
 | sumble | n/a* | n/a* | n/a* |
 
+**By category** - F1 per category, same 2-of-5 bar
+
+| Category | Companies | crustdata | predictleads | theirstack | builtwith | sumble |
+|---|---:|---:|---:|---:|---:|---:|
+| GTM | 557 | **66.7%** | 62.7% | 44.3% | 43.7% | 39.5% |
+| Engineering | 854 | 62.4% | **65.6%** | 48.4% | 30.1% | 29.4% |
+| Data & AI | 644 | **74.7%** | 64.0% | 51.5% | 51.7% | 37.3% |
+| IT & Security | 188 | 56.6% | 57.1% | **58.5%** | 25.4% | 49.5% |
+| People & Finance | 270 | 65.5% | **73.8%** | 62.8% | 38.4% | 59.3% |
+| Collaboration & Productivity | 502 | **73.3%** | 59.8% | 51.2% | 72.0% | 33.5% |
+
 Sorted by F1. Per-company scores averaged across the panel; a company counts toward a provider's recall only when it has at least 5 consensus techs, and toward precision only when the provider made at least 5 claims there.
 
 - **F1** - harmonic mean of recall and precision, per company.
 - **Matched** - % of panel companies the provider returned a record for.
 - **Techs / company** - median technologies reported per matched company.
 - **Latency p50** - median client-observed wall time per company, measured identically for all providers.
+- **By category** - every tech is bucketed by a crosswalk of the providers' own category vocabularies; a category is graded for a company only when it holds 3+ consensus techs there, and **Companies** is how many qualified.
 - *\*Sumble publishes no dates, so it cannot be scored on the fresh track.*
 - Under the strict 3-of-5 bar (`python -m src.report --majority`) Crustdata still leads on F1; the order below it changes.
 

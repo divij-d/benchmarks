@@ -76,6 +76,25 @@ def main():
                "|---" + "|---:" * len(cols) + "|"]
         md += [f"| {name} | " + " | ".join(vals) + " |" for name, vals in rows]
         md.append("")
+    # per-category F1: rows are the six buckets, columns the providers
+    cat = agg.get("f1_pair_by_bucket" if bar == "pair" else "f1_by_bucket") or {}
+    labels, counts = agg.get("bucket_labels") or {}, agg.get("bucket_company_counts") or {}
+    if cat:
+        head = f"{'Category':<30}{'Companies':>10}" + "".join(f"{LABEL[p]:>14}" for p in PROVIDERS)
+        print(f"\nBy category (F1)\n{head}\n{'-' * len(head)}")
+        md += ["**By category (F1)**", "",
+               "| Category | Companies | " + " | ".join(LABEL[p] for p in PROVIDERS) + " |",
+               "|---|---:" + "|---:" * len(PROVIDERS) + "|"]
+        for b, provs in cat.items():
+            vals = [provs.get(p) for p in PROVIDERS]
+            best = max((v for v in vals if v is not None), default=None)
+            print(f"{labels.get(b, b):<30}{counts.get(b, 0):>10}" + "".join(f"{fmt('pct', v):>14}" for v in vals))
+            md.append(f"| {labels.get(b, b)} | {counts.get(b, 0)} | " +
+                      " | ".join(f"**{fmt('pct', v)}**" if v is not None and v == best else fmt("pct", v)
+                                 for v in vals) + " |")
+        md.append("")
+        print("A category is graded for a company only when it holds 3+ consensus techs; "
+              "Companies = how many qualified.")
     print("\nRecall: share of consensus techs found. Precision: share of the provider's claims "
           "other providers confirm.\nn/a: provider publishes no dates, so it cannot be scored "
           "on freshness.")
